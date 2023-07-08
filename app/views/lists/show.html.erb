@@ -1,17 +1,19 @@
 <h1>Lists#show</h1>
 <p>Find me in app/views/lists/show.html.erb</p>
+<%= link_to "add a movie", new_list_bookmark_path(@list) %>
 
 <div class="container p-3">
   <div class="row">
-    <% @list.movies.each do |movie| %>
+    <% @list.bookmarks.each do |movie_bookmark| %>
+    <% movie = Movie.find(movie_bookmark.movie_id) %>
     <div class="col md-6">
       <div class="card rounded" style="width: 18rem;">
         <img src="<%= movie.poster_url %>" class="card-img-top" alt="<%= movie.title %>">
         <div class="card-body">
           <h5 class="card-title"><%= movie.title %></h5>
           <p class="card-text"><%= movie.overview[0, 100] %>...</p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
         </div>
+        <%= link_to "Remove from list", bookmark_path(movie_bookmark), data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}, class: "btn btn-danger" %>
       </div>
     </div>
     <% end %>
