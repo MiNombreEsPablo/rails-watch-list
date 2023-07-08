@@ -52,6 +52,7 @@ gem 'sassc-rails'
 
 # custom gems
 gem 'autoprefixer-rails'
+gem 'bootstrap-sass'
 gem 'font-awesome-sass', '~> 6.1'
 gem 'simple_form'
 

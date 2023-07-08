@@ -1,0 +1,26 @@
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/background.png);">
+  <div class="container">
+    <h1>Le Wagon brings <strong>tech skills</strong> to <strong>creative people</strong>!</h1>
+    <p>Change your life and learn to code at one of our campuses around the world.</p>
+    <a class="btn btn-flat" href="#">Apply now</a>
+  </div>
+</div>
+
+<div class="container p-3 justify-content-center">
+  <div class="row">
+    <% @lists.each do |list| %>
+    <div class="col md-6">
+      <div class="card rounded" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title"><%= list.name %></h5>
+          <h6 class="card-subtitle mb-2 text-body-secondary">Card subtitle</h6>
+          <p class="card-text"><%= list.movies.size %> Movies</p>
+          <hr>
+          <%= link_to "See list", list_path(list) %>
+          <%= link_to "Delete list", list_path(list), data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}, class: "text-danger" %>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+<h1>Lists#show</h1>
+<p>Find me in app/views/lists/show.html.erb</p>
+
+<div class="container p-3">
+  <div class="row">
+    <% @list.movies.each do |movie| %>
+    <div class="col md-6">
+      <div class="card rounded" style="width: 18rem;">
+        <img src="<%= movie.poster_url %>" class="card-img-top" alt="<%= movie.title %>">
+        <div class="card-body">
+          <h5 class="card-title"><%= movie.title %></h5>
+          <p class="card-text"><%= movie.overview[0, 100] %>...</p>
+          <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>
