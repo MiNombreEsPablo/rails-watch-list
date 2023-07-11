@@ -7,11 +7,16 @@
     <% @list.bookmarks.each do |movie_bookmark| %>
     <% movie = Movie.find(movie_bookmark.movie_id) %>
     <div class="col md-6">
-      <div class="card rounded" style="width: 18rem;">
+      <div class="card movie-card" style="width: 18rem;">
         <img src="<%= movie.poster_url %>" class="card-img-top" alt="<%= movie.title %>">
         <div class="card-body">
           <h5 class="card-title"><%= movie.title %></h5>
+          <p class="card-text"><%= movie.rating %> <i class="fa-solid fa-star" style="color: orange"></i></p>
           <p class="card-text"><%= movie.overview[0, 100] %>...</p>
+          <hr>
+          <figcaption class="blockquote-footer">
+            <%= movie_bookmark.comment %>
+          </figcaption>
         </div>
         <%= link_to "Remove from list", bookmark_path(movie_bookmark), data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}, class: "btn btn-danger" %>
       </div>
