@@ -53,6 +53,8 @@ gem 'sassc-rails'
 # custom gems
 gem 'autoprefixer-rails'
 gem 'bootstrap-sass'
+gem 'cloudinary', '~> 1.16.0'
+gem 'dotenv-rails', groups: %i[development test]
 gem 'font-awesome-sass', '~> 6.1'
 gem 'simple_form'
 
