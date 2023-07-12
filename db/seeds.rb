@@ -3,9 +3,9 @@
 require 'open-uri'
 
 puts 'Cleaning database...'
-Movie.destroy_all
 List.destroy_all
 Bookmark.destroy_all
+Movie.destroy_all
 
 puts 'Creating movies...'
 url = 'http://tmdb.lewagon.com/movie/top_rated'
@@ -22,7 +22,10 @@ response['results'].each do |movie_hash|
 end
 
 puts 'Creating lists...'
-List.create!(name: 'Favourites')
+list = List.create!(name: 'Favourites')
+file = URI.open('https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/NES-Console-Set.jpg/1200px-NES-Console-Set.jpg')
+list.photo.attach(io: file, filename: 'nes.png', content_type: 'image/png')
+list.save
 
 puts 'Creating bookmarks...'
 3.times do
