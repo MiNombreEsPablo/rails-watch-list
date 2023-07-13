@@ -1,12 +1,8 @@
-<h1>Lists#show</h1>
-<p>Find me in app/views/lists/show.html.erb</p>
-<%= link_to "add a movie", new_list_bookmark_path(@list) %>
-
-<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/background.png);">
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path @list.photo.key, crop: :fill %>')">
   <div class="container">
-    <h1>Le Wagon brings <strong>tech skills</strong> to <strong>creative people</strong>!</h1>
-    <p>Change your life and learn to code at one of our campuses around the world.</p>
-    <a class="btn btn-flat" href="#">Apply now</a>
+    <h1><%= @list.name %></h1>
+    <p>There's <%= @list.movies.size %> in this list.</p>
+    <%= link_to "Add a movie", new_list_bookmark_path(@list), class: "btn btn-flat" %>
   </div>
 </div>
 
@@ -19,7 +15,7 @@
         <img src="<%= movie.poster_url %>" class="card-img-top" alt="<%= movie.title %>">
         <div class="card-body">
           <h5 class="card-title"><%= movie.title %></h5>
-          <p class="card-text"><%= movie.rating %> <i class="fa-solid fa-star" style="color: orange"></i></p>
+          <p class="card-text"><strong><%= movie.rating %> <i class="fa-solid fa-star" style="color: orange"></i></strong></p>
           <p class="card-text"><%= movie.overview[0, 100] %>...</p>
           <hr>
           <figcaption class="blockquote-footer">
@@ -30,5 +26,25 @@
       </div>
     </div>
     <% end %>
+
+    <%= link_to new_list_bookmark_path(@list), class: "wrapper-link" do %>
+      <div class="col md-6">
+        <div class="card movie-card" style="width: 18rem;">
+          <img src="<%= cl_image_path @list.photo.key %>" class="card-img-top" alt="Add a movie">
+        <div class="card-body">
+          <h5 class="card-title">Title</h5>
+          <p class="card-text"><strong>? <i class="fa-solid fa-star" style="color: orange"></i></strong></p>
+          <p class="card-text">Synopsis</p>
+          <hr>
+          <figcaption class="blockquote-footer">
+            Your comment
+          </figcaption>
+        </div>
+         <%= link_to "Remove from list", "#", data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}, class: "btn btn-danger disabled" %>
+        </div>
+        </div>
+    <% end %>
+
+    </div>
   </div>
 </div>
