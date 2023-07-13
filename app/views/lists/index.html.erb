@@ -1,32 +1,24 @@
-<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/background.png);">
-  <div class="container">
-    <h1>Le Wagon brings <strong>tech skills</strong> to <strong>creative people</strong>!</h1>
-    <p>Change your life and learn to code at one of our campuses around the world.</p>
-    <a class="btn btn-flat" href="#">Apply now</a>
-  </div>
+<div class="container p-3 justify-content-center">
+  <h1>Your Movie Lists</h1>
+  <p>See you created lists and create new ones.</p>
 </div>
 
-<%#= cl_image_tag("knhmhnr3uutgh40tvffs", crop: :fill) %>
-
-<div class="container p-3 justify-content-center">
-  <div class="row">
-    <% @lists.each do |list| %>
-    <div class="col md-6">
-      <div class="card rounded" style="width: 18rem;">
-      <%= cl_image_tag list.photo.key, crop: :fill, class: "card-img-top", alt: list.name %>
-        <div class="card-body">
-          <h5 class="card-title"><%= list.name %></h5>
-          <h6 class="card-subtitle mb-2 text-body-secondary">Card subtitle</h6>
-          <p class="card-text"><%= list.movies.size %> Movies</p>
-          <hr>
-          <%= link_to "See list", list_path(list) %>
-          <%#= link_to "Delete list", list_path(list), data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}, class: "text-danger" %>
-          <%= link_to list_path(list), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "text-danger" do %>
-                                                         <i class="fa-regular fa-trash-can"></i>
-                                                      <% end %>
+<div class="container justify-content-center">
+  <% @lists.each do |list| %>
+    <div class="container p-3 justify-content-center">
+      <%= render 'list', list: list %>
+    </div>
+  <% end %>
+  <%= link_to new_list_path, class: "wrapper-link" do %>
+    <div class="container p-3 justify-content-center">
+      <div class="card-list">
+        <div class="card-list-infos">
+          <h2>+ New list</h2>
+          <p>0 movies in this list</p>
+        </div>
+        <div class="list-card-movies">
         </div>
       </div>
     </div>
-    <% end %>
-  </div>
+  <% end %>
 </div>

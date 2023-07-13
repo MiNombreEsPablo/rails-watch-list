@@ -1,0 +1,14 @@
+<%= link_to list_path(list), class: "wrapper-link" do %>
+  <div class="card-list">
+    <div class="card-list-infos">
+      <h2><%= list.name %></h2>
+      <p><%= list.movies.size %> movies in this list</p>
+    </div>
+    <%= cl_image_tag list.photo.key, alt: list.name %>
+    <div class="list-card-movies">
+      <% list.movies.each do |movie| %>
+        <%= image_tag movie.poster_url, height: 200, crop: :fill %>
+      <% end %>
+    </div>
+  </div>
+<% end %>
