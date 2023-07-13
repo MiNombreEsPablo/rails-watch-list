@@ -20,7 +20,10 @@
           <p class="card-text"><%= list.movies.size %> Movies</p>
           <hr>
           <%= link_to "See list", list_path(list) %>
-          <%= link_to "Delete list", list_path(list), data: {turbo_method: :destroy, turbo_confirm: 'Are you sure?'}, class: "text-danger" %>
+          <%#= link_to "Delete list", list_path(list), data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}, class: "text-danger" %>
+          <%= link_to list_path(list), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "text-danger" do %>
+                                                         <i class="fa-regular fa-trash-can"></i>
+                                                      <% end %>
         </div>
       </div>
     </div>
